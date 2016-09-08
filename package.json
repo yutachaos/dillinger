@@ -31,7 +31,9 @@
     "text",
     "html",
     "express",
-    "api"
+    "api",
+    "electron",
+    "desktop"
   ],
   "repository": {
     "type": "git",
