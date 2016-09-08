@@ -1,4 +1,6 @@
-# Dillinger
+# Dillinger (Electron Version)
+
+**WARNING: This branch is for an electron version of Dillinger and is not suitable for production. Use at your own risk!**
 
 Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
 
