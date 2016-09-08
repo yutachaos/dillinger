@@ -4,6 +4,15 @@
 
 'use strict'
 
+const electron = require('electron');
+const eApp = electron.app;  // Module to control application life.
+const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
+
+
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
+var mainWindow = null;
+
 const config = require('./config')()
   , connect = require('connect')
   , methodOverride = require('method-override')
@@ -109,7 +118,32 @@ app.use(github)
 app.use(googledrive)
 app.use(onedrive)
 
-app.listen(app.get('port'), function() {
+// Quit when all windows are closed.
+app.on('window-all-closed', function() {
+  // On OS X it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd   Q
+  if (process.platform != 'darwin') {
+    app.quit();
+  }
+});
+
+eApp.on('ready', function() {
+
+  app.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'))
     console.log('\nhttp://' + app.get('bind-address') + ':' + app.get('port') + '\n')
-})
+
+    mainWindow = new BrowserWindow({
+      width: 1366,
+      height: 768,
+      autoHideMenuBar: true,
+      useContentSize: true,
+      resizable: true,
+    });
+    mainWindow.loadURL('http://localhost:8080/');
+    mainWindow.focus();
+
+  }) // end app.listen
+
+}) // end eApp.ready
+

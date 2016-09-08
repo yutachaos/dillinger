@@ -44,7 +44,9 @@ And of course Dillinger itself is open source with a [public repository][dill]
 
 ### Installation
 
-...
+`npm i -g electron`
+`npm i`
+`electron app.js`
 
 ### Development
 
