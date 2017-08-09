@@ -22,10 +22,13 @@ RUN mkdir noto && \
     sudo cp ./noto/*.otf /usr/share/fonts/noto/ && \
     sudo chmod 644 /usr/share/fonts/noto/*.otf && \
     sudo fc-cache -fv
+
 # this is faster via npm run build-docker
 COPY package.json ./package.json
-RUN npm install \
+ENV NODE_ENV production node app
+RUN npm install --production \
     && npm cache clean
+
 
 # Copy source over and create configs dir
 COPY . .
